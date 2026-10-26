@@ -110,16 +110,17 @@ button {
   letter-spacing: -0.02em;
 }
 
-.logo-mark {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  background: linear-gradient(135deg, var(--crimson), #8b1529);
+.logo-img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
   border-radius: 8px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.logo-img-sm {
+  width: 32px;
+  height: 32px;
 }
 
 .logo-text {
