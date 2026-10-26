@@ -3,12 +3,20 @@
   "name": "MultiSoftCleaner",
   "brand": "MultiSoftCreations",
   "category": "Utilidades",
-  "status": "development",
+  "status": "demo",
   "visibility": "public",
-  "featured": false,
-  "description": "Herramienta de limpieza y mantenimiento. En preparación; enlaces y detalles se publicarán cuando el proyecto tenga una versión lista para mostrar.",
+  "featured": true,
+  "description": "Herramienta de limpieza y mantenimiento para escritorio (demo v2.1.1). El escaneo y la detección de duplicados funcionan de forma fiable. Las funciones de limpieza siguen en corrección: pueden ser lentas o, en algunos casos, eliminar archivos importantes. Úsala bajo tu propia responsabilidad y con copias de seguridad.",
   "image": "img/portada.webp",
-  "technologies": ["Python"],
-  "links": { "demo": "", "repository": "" },
-  "release": { "type": "public", "label": "Descargar" }
+  "technologies": [
+    "Python"
+  ],
+  "links": {
+    "demo": "",
+    "repository": "https://github.com/RicardoT005/MultiSoftCleaner_V2.1.1-free"
+  },
+  "release": {
+    "type": "public",
+    "label": "Ver repositorio"
+  }
 }

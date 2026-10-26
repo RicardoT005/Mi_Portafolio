@@ -1,0 +1,22 @@
+{
+  "id": "multisoft-netguard",
+  "name": "MultiSoft NetGuard",
+  "brand": "MultiSoftCreations",
+  "category": "Herramientas",
+  "status": "development",
+  "visibility": "public",
+  "featured": false,
+  "description": "Sistema de protección de red en desarrollo (v1.0.0). Monitorea puertos, tráfico y procesos sospechosos. Aún no está terminado: no hay demo pública ni capturas. El código está en GitHub para seguimiento del progreso.",
+  "image": "img/portada.webp",
+  "technologies": [
+    "Python"
+  ],
+  "links": {
+    "demo": "",
+    "repository": "https://github.com/RicardoT005/MultiSoftNetGuard"
+  },
+  "release": {
+    "type": "public",
+    "label": "Ver repositorio"
+  }
+}

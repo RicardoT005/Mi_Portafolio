@@ -8,53 +8,82 @@
   <link rel="stylesheet" href="../../../css/projects.css">
   <link rel="stylesheet" href="../../../css/responsive.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .warn { background: rgba(234,179,8,0.12); border: 1px solid rgba(234,179,8,0.35); border-radius: 12px; padding: 1rem 1.25rem; color: #fbbf24; font-size: 0.95rem; margin: 1rem 0 1.5rem; }
+    .steps { color: var(--text-muted); font-size: 0.95rem; padding-left: 1.25rem; list-style: decimal; margin-bottom: 1.5rem; }
+    .steps li { margin-bottom: 0.5rem; }
+    .steps code { background: rgba(255,255,255,0.06); padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.88em; }
+  </style>
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
       <a href="../../../index.html" class="logo">
-        <img src="../../../assets/img/logo.png" width="42" height="42" alt="MultiSoftCreations" class="logo-img">
+        <img src="../../../assets/img/logo.png" alt="MultiSoftCreations" class="logo-img" width="42" height="42">
         <span class="logo-text">MultiSoftCreations</span>
       </a>
-      <nav class="main-nav">
-        <ul>
-          <li><a href="../../../index.html">Inicio</a></li>
-          <li><a href="../../proyectos.html">Proyectos</a></li>
-          <li><a href="../../contacto.html">Contacto</a></li>
-        </ul>
-      </nav>
+      <nav class="main-nav"><ul>
+        <li><a href="../../../index.html">Inicio</a></li>
+        <li><a href="../../proyectos.html">Proyectos</a></li>
+        <li><a href="../../contacto.html">Contacto</a></li>
+      </ul></nav>
     </div>
   </header>
-
   <main>
     <section class="section project-detail-hero">
       <div class="container">
-        <p class="hero-label">Utilidades · En desarrollo</p>
+        <p class="hero-label">Utilidades · Demostración · v2.1.1</p>
         <h1 class="page-title">MultiSoftCleaner</h1>
-        <p class="page-intro">Herramienta de limpieza y mantenimiento.</p>
+        <p class="page-intro">Herramienta de limpieza y mantenimiento para escritorio. Versión demo en desarrollo activo.</p>
         <div class="project-detail-meta">
           <span class="badge badge-category">Utilidades</span>
-          <span class="badge badge-status development">En desarrollo</span>
+          <span class="badge badge-status demo">Demostración</span>
         </div>
+        <p style="margin-top:1rem">
+          <a href="https://github.com/RicardoT005/MultiSoftCleaner_V2.1.1-free" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Ver repositorio</a>
+        </p>
       </div>
     </section>
-
     <section class="section">
       <div class="container project-detail-body">
         <div>
+          <div class="warn">
+            <strong>Aviso importante.</strong> Esta es una demo incompleta. El escaneo y la detección de duplicados suelen funcionar bien.
+            Las funciones de limpieza aún se están corrigiendo: el programa puede ir lento y, en algunos casos, borrar archivos importantes.
+            <strong>Haz copia de seguridad</strong> antes de usarlo. El autor no se responsabiliza de pérdida de datos ni daños derivados del uso de esta versión.
+          </div>
           <h2 class="section-title" style="font-size:1.35rem">Descripción</h2>
-          <p style="color:var(--text-muted)">
-            Completa con información real, capturas y enlaces cuando estén listos.
+          <p style="color:var(--text-muted);margin-bottom:1rem">
+            MultiSoftCleaner es una utilidad de escritorio en Python orientada a escaneo, duplicados y limpieza.
+            Se publica como demo gratuita para pruebas y feedback, no como producto terminado.
           </p>
+          <h3 style="margin:1.25rem 0 0.75rem">Cómo probar la demo</h3>
+          <ol class="steps">
+            <li>Ten instalado <strong>Python 3.10+</strong>.</li>
+            <li>Clona el repositorio:<br><code>git clone https://github.com/RicardoT005/MultiSoftCleaner_V2.1.1-free.git</code></li>
+            <li>Entra a la carpeta:<br><code>cd MultiSoftCleaner_V2.1.1-free</code></li>
+            <li>Instala dependencias:<br><code>pip install -r requirements.txt</code></li>
+            <li>Ejecuta desde la raíz del proyecto:<br><code>python main.py</code></li>
+          </ol>
+          <p style="color:var(--text-dim);font-size:0.9rem;margin-bottom:1.5rem">
+            En Windows, <code>win10toast</code> es opcional. Si falla la instalación, la app puede seguir abriendo sin notificaciones del sistema.
+          </p>
+          <h3 style="margin-bottom:0.5rem">Tecnologías</h3>
+          <div class="project-tech"><span class="tech-tag">Python</span></div>
         </div>
         <aside class="project-sidebar">
           <h3>Enlaces</h3>
-          <p style="font-size:0.9rem;color:var(--text-dim)">Pendiente de configurar.</p>
+          <p style="margin-bottom:1rem">
+            <a href="https://github.com/RicardoT005/MultiSoftCleaner_V2.1.1-free" class="btn btn-secondary" style="width:100%" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </p>
+          <h3>Estado</h3>
+          <p style="font-size:0.9rem;color:var(--text-muted)">Demo · funciones de limpieza en corrección</p>
+          <h3 style="margin-top:1.25rem">Marca</h3>
+          <p style="font-size:0.9rem;color:var(--text-muted)">MultiSoftCreations</p>
         </aside>
       </div>
     </section>
   </main>
-
   <footer class="site-footer">
     <div class="container footer-inner">
       <p class="footer-copy">© <span id="year"></span> Ricardo Torres · MultiSoftCreations</p>
