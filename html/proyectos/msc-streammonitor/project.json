@@ -6,15 +6,9 @@
   "status": "development",
   "visibility": "public",
   "featured": false,
-  "description": "Monitor de streams. Detalles y estado se completarán con información real del proyecto.",
+  "description": "Monitor de streams. En preparación; la información y los enlaces se completarán cuando haya material público.",
   "image": "img/portada.webp",
   "technologies": [],
-  "links": {
-    "demo": "",
-    "repository": ""
-  },
-  "release": {
-    "type": "public",
-    "label": "Ver más"
-  }
+  "links": { "demo": "", "repository": "" },
+  "release": { "type": "public", "label": "Ver más" }
 }

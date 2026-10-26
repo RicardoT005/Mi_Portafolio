@@ -3,10 +3,10 @@
   "name": "Space-Strike",
   "brand": "MultiSoftCreations",
   "category": "Videojuegos",
-  "status": "development",
+  "status": "early_access",
   "visibility": "public",
   "featured": true,
-  "description": "Videojuego espacial de acción. Naves, enemigos y combates. En desarrollo; los enlaces de demo se añadirán cuando existan versiones jugables autorizadas.",
+  "description": "Videojuego espacial web (versión beta 3.3.3). Incluye registro de piloto con inicio de sesión de Google. Se sigue actualizando; parte del diseño visual contó con apoyo de colaboradores, el código es de autoría propia.",
   "image": "img/portada.webp",
   "technologies": [
     "HTML5",
@@ -14,11 +14,11 @@
     "JavaScript"
   ],
   "links": {
-    "demo": "",
+    "demo": "https://ricardot005.github.io/Space-Strike_beta/",
     "repository": ""
   },
   "release": {
     "type": "public",
-    "label": "Jugar ahora"
+    "label": "Jugar beta"
   }
 }

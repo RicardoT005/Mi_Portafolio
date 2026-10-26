@@ -6,15 +6,9 @@
   "status": "development",
   "visibility": "public",
   "featured": false,
-  "description": "Herramienta de auditoría. Información pendiente de completar con el estado real del proyecto.",
+  "description": "Herramienta de auditoría. En preparación; detalles y enlaces pendientes de publicación.",
   "image": "img/portada.webp",
   "technologies": [],
-  "links": {
-    "demo": "",
-    "repository": ""
-  },
-  "release": {
-    "type": "public",
-    "label": "Ver más"
-  }
+  "links": { "demo": "", "repository": "" },
+  "release": { "type": "public", "label": "Ver más" }
 }
