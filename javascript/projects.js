@@ -271,7 +271,7 @@
           encodeURIComponent(
             "Hola, Ricardo. Me interesa solicitar información sobre el servicio: " + safeText(s.name)
           );
-        const btn = createEl("a", "btn btn-secondary", "Solicitar info");
+        const btn = createEl("a", "btn btn-whatsapp", "Solicitar info");
         btn.href = contactUrl;
         btn.target = "_blank";
         btn.rel = "noopener noreferrer";
