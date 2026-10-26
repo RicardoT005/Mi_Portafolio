@@ -1,0 +1,20 @@
+{
+  "id": "msc-streammonitor",
+  "name": "MSC-StreamMonitor",
+  "brand": "MultiSoftCreations",
+  "category": "Herramientas",
+  "status": "development",
+  "visibility": "public",
+  "featured": false,
+  "description": "Monitor de streams. Detalles y estado se completarán con información real del proyecto.",
+  "image": "img/portada.webp",
+  "technologies": [],
+  "links": {
+    "demo": "",
+    "repository": ""
+  },
+  "release": {
+    "type": "public",
+    "label": "Ver más"
+  }
+}

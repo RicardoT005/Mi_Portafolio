@@ -1,0 +1,22 @@
+{
+  "id": "multisoft-cleaner",
+  "name": "MultiSoftCleaner",
+  "brand": "MultiSoftCreations",
+  "category": "Utilidades",
+  "status": "development",
+  "visibility": "public",
+  "featured": true,
+  "description": "Herramienta de limpieza y mantenimiento. Descripción y enlaces se actualizarán con el estado real del proyecto.",
+  "image": "img/portada.webp",
+  "technologies": [
+    "Python"
+  ],
+  "links": {
+    "demo": "",
+    "repository": ""
+  },
+  "release": {
+    "type": "public",
+    "label": "Descargar"
+  }
+}

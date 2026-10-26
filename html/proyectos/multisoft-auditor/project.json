@@ -1,0 +1,20 @@
+{
+  "id": "multisoft-auditor",
+  "name": "MultiSoft Auditor",
+  "brand": "MultiSoftCreations",
+  "category": "Herramientas",
+  "status": "development",
+  "visibility": "public",
+  "featured": false,
+  "description": "Herramienta de auditoría. Información pendiente de completar con el estado real del proyecto.",
+  "image": "img/portada.webp",
+  "technologies": [],
+  "links": {
+    "demo": "",
+    "repository": ""
+  },
+  "release": {
+    "type": "public",
+    "label": "Ver más"
+  }
+}

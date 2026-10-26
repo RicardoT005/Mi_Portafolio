@@ -1,0 +1,24 @@
+{
+  "id": "space-strike",
+  "name": "Space-Strike",
+  "brand": "MultiSoftCreations",
+  "category": "Videojuegos",
+  "status": "development",
+  "visibility": "public",
+  "featured": true,
+  "description": "Videojuego espacial de acción. Naves, enemigos y combates. En desarrollo; los enlaces de demo se añadirán cuando existan versiones jugables autorizadas.",
+  "image": "img/portada.webp",
+  "technologies": [
+    "HTML5",
+    "CSS3",
+    "JavaScript"
+  ],
+  "links": {
+    "demo": "",
+    "repository": ""
+  },
+  "release": {
+    "type": "public",
+    "label": "Jugar ahora"
+  }
+}

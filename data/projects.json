@@ -1,0 +1,9 @@
+{
+  "projects": [
+    "html/proyectos/jarvis-vortex/project.json",
+    "html/proyectos/space-strike/project.json",
+    "html/proyectos/multisoft-cleaner/project.json",
+    "html/proyectos/msc-streammonitor/project.json",
+    "html/proyectos/multisoft-auditor/project.json"
+  ]
+}

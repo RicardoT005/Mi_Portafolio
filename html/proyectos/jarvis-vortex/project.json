@@ -1,0 +1,23 @@
+{
+  "id": "jarvis-vortex",
+  "name": "Jarvis Vortex",
+  "brand": "MultiSoftCreations",
+  "category": "IA",
+  "status": "development",
+  "visibility": "public",
+  "featured": true,
+  "description": "Asistente de inteligencia artificial en desarrollo. Estado y funciones reales se documentarán conforme avance el proyecto.",
+  "image": "img/portada.webp",
+  "technologies": [
+    "Python",
+    "JavaScript"
+  ],
+  "links": {
+    "demo": "",
+    "repository": ""
+  },
+  "release": {
+    "type": "public",
+    "label": "Ver demo"
+  }
+}
