@@ -6,7 +6,7 @@
   "status": "demo",
   "visibility": "public",
   "featured": true,
-  "description": "Asistente de inteligencia artificial en desarrollo. Hay una demostración pública desplegada en Render; el servicio puede tardar unos segundos en despertar la primera vez.",
+  "description": "Asistente personal de IA (v2.0) con acceso seguro vía Google, memoria persistente, panel de control de reactores y capacidad de leer archivos adjuntos. Demo pública en Render.",
   "image": "img/portada.webp",
   "technologies": [
     "Python",
