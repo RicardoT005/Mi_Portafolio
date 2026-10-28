@@ -14,6 +14,10 @@
 <body>
   <header class="site-header">
     <div class="container header-inner">
+      <button type="button" class="back-btn" data-back data-back-fallback="../index.html" aria-label="Volver">
+        <span class="back-arrow" aria-hidden="true">←</span>
+      </button>
+
       <a href="../index.html" class="logo">
         <img src="../assets/img/logo.png" alt="MultiSoftCreations" class="logo-img" width="42" height="42">
         <span class="logo-text">MultiSoftCreations</span>
@@ -55,14 +59,6 @@
         </div>
 
         <div class="contact-card">
-          <h2>GitHub</h2>
-          <p>Repositorio del portafolio y proyectos públicos.</p>
-          <a href="https://github.com/RicardoT005/Mi_Portafolio" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
-            Ver repositorio
-          </a>
-        </div>
-
-        <div class="contact-card">
           <h2>Correo / Fiverr / TikTok</h2>
           <p>Enlaces pendientes de confirmar. Añádelos cuando estén listos.</p>
           <p class="placeholder-note">Pendiente de configuración.</p>
@@ -81,16 +77,21 @@
             <input type="text" name="nombre" maxlength="100" required autocomplete="name" placeholder="Tu nombre o empresa">
           </label>
           <label>
-            Correo electrónico
-            <input type="email" name="email" maxlength="120" autocomplete="email" placeholder="opcional@correo.com">
-          </label>
-          <label>
-            Medio preferido de respuesta
-            <select name="medio">
+            Medio preferido de respuesta <span class="req">*</span>
+            <select name="medio" required>
               <option value="whatsapp">WhatsApp</option>
-              <option value="email">Correo</option>
+              <option value="email">Correo electrónico</option>
               <option value="otro">Otro</option>
             </select>
+          </label>
+          <label id="phone-wrap">
+            Número de WhatsApp <span class="req">*</span>
+            <input type="tel" name="telefono" maxlength="20" autocomplete="tel" placeholder="Ej. 5521234567">
+          </label>
+          <label>
+            Correo electrónico <span class="req">*</span>
+            <input type="email" name="email" maxlength="120" autocomplete="email" placeholder="respaldo@correo.com">
+            <span style="font-size:0.8rem;color:var(--text-dim);font-weight:400">Úsalo como respaldo aunque prefieras WhatsApp.</span>
           </label>
           <label>
             Motivo

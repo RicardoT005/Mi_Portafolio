@@ -1,46 +1,72 @@
-# Configuración Firebase (formulario + panel admin)
+# Firebase — MultiSoftCreations
 
-## 1. Firestore
+## Admin
+Correo admin: `ricardotorresgalvez005@gmail.com`  
+En `javascript/firebase.js` → `ADMIN_EMAILS` (ya configurado).
 
-1. Firebase Console → **Build → Firestore Database → Create database**
-2. Modo: **Start in production mode**
-3. Elige ubicación (p. ej. `nam5` o la más cercana)
-
-## 2. Reglas de seguridad
-
-Firestore → **Rules** → pegar y **Publish**:
+## Reglas Firestore (Rules → Publish)
 
 ```
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email.lower() == 'ricardotorresgalvez005@gmail.com';
+    }
+
     match /solicitudes/{id} {
       allow create: if request.resource.data.nombre is string
         && request.resource.data.nombre.size() > 0
         && request.resource.data.nombre.size() <= 100
         && request.resource.data.mensaje is string
         && request.resource.data.mensaje.size() >= 10
-        && request.resource.data.mensaje.size() <= 4000
-        && request.resource.data.keys().hasOnly([
-          'nombre', 'email', 'medio', 'motivo', 'mensaje',
-          'createdAt', 'leido', 'likes', 'respuestas'
-        ]);
+        && request.resource.data.mensaje.size() <= 4000;
+      allow read, update, delete: if isAdmin();
+    }
 
-      allow read, update, delete: if request.auth != null;
+    match /comentarios/{id} {
+      allow read: if true;
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.texto is string
+        && request.resource.data.texto.size() >= 2
+        && request.resource.data.texto.size() <= 1000;
+      allow update: if request.auth != null
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes'])
+        && request.resource.data.likes == resource.data.likes + 1;
+      allow delete: if request.auth != null && resource.data.uid == request.auth.uid;
+    }
+
+    match /perfiles/{uid} {
+      allow read: if true;
+      allow create: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource.data.rango == 'usuario';
+      allow update: if isAdmin()
+        || (request.auth != null
+            && request.auth.uid == uid
+            && request.resource.data.rango == resource.data.rango);
+      allow delete: if isAdmin();
+    }
+
+    match /usernames/{name} {
+      allow read: if true;
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && name.matches('^[a-z0-9_-]{3,20}$');
+      allow update, delete: if false;
     }
   }
 }
 ```
 
-## 3. Authentication
+## Índice
+`comentarios`: projectId ASC + createdAt DESC (enlace en consola del navegador si lo pide).
 
-1. **Build → Authentication → Get started**
-2. **Sign-in method → Email/Password → Enable**
-3. **Users → Add user**: tu correo y una contraseña fuerte (no la publiques)
+## Rangos (solo admin)
+Creador · Co-creador/a · Colaborador (logo verificado) · Cliente frecuente · Cliente · Usuario
 
-## 4. Uso en el sitio
-
-- Formulario: `html/contacto.html`
-- Panel admin: `html/admin.html` (ej. `https://ricardot005.github.io/Mi_Portafolio/html/admin.html`)
-
-Los "me gusta" se hacen desde el panel (usuario autenticado) para evitar spam.
+## Username único
+Colección `usernames/{username}` → un correo = una cuenta Auth (Firebase lo impide duplicar).

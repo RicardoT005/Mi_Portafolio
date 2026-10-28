@@ -1,5 +1,5 @@
 /**
- * Panel admin — ver solicitudes, responder, likes, marcar leído
+ * Panel admin — solicitudes + asignación de rangos
  */
 import {
   db,
@@ -7,6 +7,8 @@ import {
   collection,
   getDocs,
   doc,
+  getDoc,
+  setDoc,
   updateDoc,
   deleteDoc,
   query,
@@ -16,7 +18,9 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  serverTimestamp,
+  isAdminEmail,
+  RANGOS,
+  rangoLabel,
 } from "./firebase.js";
 
 const loginView = document.getElementById("login-view");
@@ -24,6 +28,7 @@ const panelView = document.getElementById("panel-view");
 const loginForm = document.getElementById("login-form");
 const loginStatus = document.getElementById("login-status");
 const listEl = document.getElementById("solicitudes-list");
+const ranksEl = document.getElementById("ranks-list");
 const logoutBtn = document.getElementById("logout-btn");
 
 function showLogin() {
@@ -37,6 +42,7 @@ function showPanel() {
   if (panelView) panelView.hidden = false;
   if (logoutBtn) logoutBtn.hidden = false;
   loadSolicitudes();
+  loadRanks();
 }
 
 function setLoginStatus(msg, isError) {
@@ -53,7 +59,14 @@ if (loginForm) {
     const email = loginForm.email.value.trim();
     const password = loginForm.password.value;
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const cred = await signInWithEmailAndPassword(auth, email, password);
+      if (!isAdminEmail(cred.user.email)) {
+        await signOut(auth);
+        setLoginStatus(
+          "Esta cuenta no está en la lista de administradores. Añade tu correo en javascript/firebase.js → ADMIN_EMAILS.",
+          true
+        );
+      }
     } catch (err) {
       console.error(err);
       setLoginStatus("No se pudo iniciar sesión. Revisa correo y contraseña.", true);
@@ -66,21 +79,31 @@ if (logoutBtn) {
 }
 
 onAuthStateChanged(auth, (user) => {
-  if (user) showPanel();
-  else showLogin();
+  if (user && isAdminEmail(user.email)) showPanel();
+  else {
+    if (user && !isAdminEmail(user.email)) {
+      signOut(auth);
+    }
+    showLogin();
+  }
 });
 
 function formatDate(ts) {
   if (!ts) return "—";
   try {
     const d = ts.toDate ? ts.toDate() : new Date(ts);
-    return d.toLocaleString("es-MX", {
-      dateStyle: "medium",
-      timeStyle: "short",
-    });
+    return d.toLocaleString("es-MX", { dateStyle: "medium", timeStyle: "short" });
   } catch {
     return "—";
   }
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
 
 async function loadSolicitudes() {
@@ -100,15 +123,13 @@ async function loadSolicitudes() {
   } catch (err) {
     console.error(err);
     listEl.innerHTML =
-      "<p class='empty-msg'>Error al cargar. ¿Activaste Firestore y las reglas?</p>";
+      "<p class='empty-msg'>Error al cargar. ¿Reglas de admin publicadas? ¿ADMIN_EMAILS configurado?</p>";
   }
 }
 
 function renderCard(id, data) {
   const card = document.createElement("article");
   card.className = "admin-card" + (data.leido ? " is-read" : "");
-  card.dataset.id = id;
-
   const respuestas = Array.isArray(data.respuestas) ? data.respuestas : [];
 
   card.innerHTML = `
@@ -124,7 +145,7 @@ function renderCard(id, data) {
     </div>
     <p class="admin-msg">${escapeHtml(data.mensaje || "")}</p>
     <p class="admin-contact">
-      ${data.email ? "Correo: " + escapeHtml(data.email) : "Sin correo"} ·
+      ${data.email ? "Correo: " + escapeHtml(data.email) : "Sin correo"} · ${data.telefono ? "Tel: " + escapeHtml(data.telefono) + " ·" : ""}
       Medio: ${escapeHtml(data.medio || "—")} ·
       👍 ${Number(data.likes) || 0}
     </p>
@@ -147,7 +168,7 @@ function renderCard(id, data) {
     div.innerHTML = `
       <p>${escapeHtml(r.texto || "")}</p>
       <div class="admin-reply-meta">
-        <span>${r.autor || "admin"} · ${formatDate(r.createdAt)}</span>
+        <span>${escapeHtml(r.autor || "admin")} · ${formatDate(r.createdAt)}</span>
         <button type="button" class="btn-link" data-like-reply="${idx}">👍 ${Number(r.likes) || 0}</button>
       </div>
     `;
@@ -160,7 +181,6 @@ function renderCard(id, data) {
       loadSolicitudes();
     } catch (e) {
       console.error(e);
-      alert("No se pudo dar like.");
     }
   });
 
@@ -180,7 +200,6 @@ function renderCard(id, data) {
       loadSolicitudes();
     } catch (e) {
       console.error(e);
-      alert("No se pudo eliminar.");
     }
   });
 
@@ -224,10 +243,67 @@ function renderCard(id, data) {
   return card;
 }
 
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+async function loadRanks() {
+  if (!ranksEl) return;
+  ranksEl.innerHTML = "<p class='loading-msg'>Cargando perfiles…</p>";
+  try {
+    const snap = await getDocs(collection(db, "perfiles"));
+    if (snap.empty) {
+      ranksEl.innerHTML =
+        "<p class='empty-msg'>Aún no hay perfiles. Se crean cuando alguien se registra para comentar.</p>";
+      return;
+    }
+    ranksEl.innerHTML = "";
+    const opts = RANGOS.map(
+      (r) => `<option value="${r.id}">${r.label}</option>`
+    ).join("");
+
+    snap.forEach((d) => {
+      const data = d.data();
+      const row = document.createElement("div");
+      row.className = "admin-card rank-row";
+      row.innerHTML = `
+        <div class="admin-card-head">
+          <div>
+            <strong>${escapeHtml(data.displayName || "Sin nombre")}</strong>
+            <span class="admin-meta">${escapeHtml(data.email || d.id)}</span>
+          </div>
+          <span class="badge badge-category">${escapeHtml(rangoLabel(data.rango || "usuario"))}</span>
+        </div>
+        <div class="admin-actions">
+          <label class="rank-select-label">
+            Asignar rango
+            <select data-rank-select>
+              ${opts}
+            </select>
+          </label>
+          <button type="button" class="btn btn-primary btn-sm" data-save-rank>Guardar</button>
+        </div>
+      `;
+      const sel = row.querySelector("[data-rank-select]");
+      sel.value = data.rango || "usuario";
+      row.querySelector("[data-save-rank]").onclick = async () => {
+        try {
+          await setDoc(
+            doc(db, "perfiles", d.id),
+            {
+              displayName: data.displayName || "Usuario",
+              email: data.email || null,
+              rango: sel.value,
+              updatedAt: new Date().toISOString(),
+            },
+            { merge: true }
+          );
+          loadRanks();
+        } catch (e) {
+          console.error(e);
+          alert("No se pudo guardar el rango. Revisa reglas y ADMIN_EMAILS.");
+        }
+      };
+      ranksEl.appendChild(row);
+    });
+  } catch (e) {
+    console.error(e);
+    ranksEl.innerHTML = "<p class='empty-msg'>Error al cargar perfiles.</p>";
+  }
 }

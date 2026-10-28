@@ -12,6 +12,10 @@
 <body>
   <header class="site-header">
     <div class="container header-inner">
+      <button type="button" class="back-btn" data-back data-back-fallback="../index.html" aria-label="Volver">
+        <span class="back-arrow" aria-hidden="true">←</span>
+      </button>
+
       <a href="../index.html" class="logo">
         <img src="../assets/img/logo.png" alt="MultiSoftCreations" class="logo-img" width="42" height="42">
         <span class="logo-text">Panel admin</span>
@@ -47,6 +51,10 @@
         </div>
         <p class="section-intro">Mensajes del formulario de contacto. Puedes responder, dar like, marcar leído o eliminar.</p>
         <div id="solicitudes-list" class="admin-list"></div>
+
+        <h2 class="section-title" style="margin-top:3rem;font-size:1.35rem">Rangos de usuarios</h2>
+        <p class="section-intro">Solo tú puedes asignar: Creador, Co-creador/a, Colaborador o Usuario. Se muestran junto a los comentarios.</p>
+        <div id="ranks-list" class="admin-list"></div>
       </div>
     </section>
   </main>
