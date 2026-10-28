@@ -25,7 +25,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAg5KEvbbo6MFBQ2Kd46ujLZ6SxTROMm94",
+  apiKey: "AIzaSyAg5KEvbbo6MFBQ2Kd46ujlZ6SxTROMm94",
   authDomain: "multisoft-portafolio.firebaseapp.com",
   projectId: "multisoft-portafolio",
   storageBucket: "multisoft-portafolio.firebasestorage.app",
