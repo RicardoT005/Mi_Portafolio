@@ -37,7 +37,7 @@
     <section class="section page-hero">
       <div class="container">
         <h1 class="page-title">Contacto</h1>
-        <p class="page-intro">Elige la forma que te resulte más cómoda. Respondo personalmente.</p>
+        <p class="page-intro">WhatsApp, formulario o redes. Respondo personalmente.</p>
       </div>
     </section>
 
@@ -55,21 +55,15 @@
         </div>
 
         <div class="contact-card">
-          <h2>Correo electrónico</h2>
-          <p>Cuando tengas definido tu correo, colócalo aquí.</p>
-          <p class="placeholder-note">Aún no configurado — edita este archivo cuando tengas el correo listo.</p>
-        </div>
-
-        <div class="contact-card">
           <h2>GitHub</h2>
-          <p>Repositorio del portafolio y futuros proyectos públicos.</p>
+          <p>Repositorio del portafolio y proyectos públicos.</p>
           <a href="https://github.com/RicardoT005/Mi_Portafolio" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
             Ver repositorio
           </a>
         </div>
 
         <div class="contact-card">
-          <h2>Fiverr / TikTok</h2>
+          <h2>Correo / Fiverr / TikTok</h2>
           <p>Enlaces pendientes de confirmar. Añádelos cuando estén listos.</p>
           <p class="placeholder-note">Pendiente de configuración.</p>
         </div>
@@ -77,15 +71,47 @@
     </section>
 
     <section class="section">
-      <div class="container">
-        <div class="contact-note">
-          <h3>Sobre el formulario de contacto</h3>
-          <p>
-            En esta primera versión el sitio es estático. El envío de formularios con almacenamiento
-            en Firebase se añadirá en una fase posterior, una vez configurada la seguridad correctamente.
-            Por ahora usa WhatsApp o el correo cuando esté disponible.
-          </p>
-        </div>
+      <div class="container" style="max-width:640px">
+        <h2 class="section-title">Enviar un mensaje</h2>
+        <p class="section-intro">Los datos se usan solo para responder tu consulta. Ver <a href="privacidad.html" class="link-arrow">aviso de privacidad</a>.</p>
+
+        <form id="contact-form" class="contact-form" novalidate>
+          <label>
+            Nombre <span class="req">*</span>
+            <input type="text" name="nombre" maxlength="100" required autocomplete="name" placeholder="Tu nombre o empresa">
+          </label>
+          <label>
+            Correo electrónico
+            <input type="email" name="email" maxlength="120" autocomplete="email" placeholder="opcional@correo.com">
+          </label>
+          <label>
+            Medio preferido de respuesta
+            <select name="medio">
+              <option value="whatsapp">WhatsApp</option>
+              <option value="email">Correo</option>
+              <option value="otro">Otro</option>
+            </select>
+          </label>
+          <label>
+            Motivo
+            <select name="motivo">
+              <option value="servicios">Servicios / cotización</option>
+              <option value="proyecto">Consulta sobre un proyecto</option>
+              <option value="colaboracion">Colaboración</option>
+              <option value="otro">Otro</option>
+            </select>
+          </label>
+          <label>
+            Mensaje <span class="req">*</span>
+            <textarea name="mensaje" rows="5" maxlength="4000" required placeholder="Cuéntame qué necesitas…"></textarea>
+          </label>
+          <label class="check-label">
+            <input type="checkbox" name="consentimiento" required>
+            <span>He leído el <a href="privacidad.html">aviso de privacidad</a> y acepto el uso de mis datos solo para responder esta solicitud.</span>
+          </label>
+          <p id="form-status" class="form-status" hidden></p>
+          <button type="submit" id="form-submit" class="btn btn-primary">Enviar mensaje</button>
+        </form>
       </div>
     </section>
   </main>
@@ -106,5 +132,6 @@
   </footer>
 
   <script src="../javascript/main.js"></script>
+  <script type="module" src="../javascript/contact.js"></script>
 </body>
 </html>
