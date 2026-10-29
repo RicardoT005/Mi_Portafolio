@@ -63,7 +63,7 @@ if (loginForm) {
       if (!isAdminEmail(cred.user.email)) {
         await signOut(auth);
         setLoginStatus(
-          "Esta cuenta no está en la lista de administradores. Añade tu correo en javascript/firebase.js → ADMIN_EMAILS.",
+          "Esta cuenta no tiene permiso de administrador.",
           true
         );
       }
@@ -123,7 +123,7 @@ async function loadSolicitudes() {
   } catch (err) {
     console.error(err);
     listEl.innerHTML =
-      "<p class='empty-msg'>Error al cargar. ¿Reglas de admin publicadas? ¿ADMIN_EMAILS configurado?</p>";
+      "<p class='empty-msg'>Error al cargar. No se pudieron cargar los datos. Comprueba la sesión y las reglas de seguridad.</p>";
   }
 }
 

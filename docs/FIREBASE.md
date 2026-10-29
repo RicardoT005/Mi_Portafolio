@@ -13,7 +13,10 @@ service cloud.firestore {
 
     function isAdmin() {
       return request.auth != null
-        && request.auth.token.email.lower() == 'ricardotorresgalvez005@gmail.com';
+        && request.auth.token.email.lower() in [
+          'ricardotorresgalvez005@gmail.com',
+          'yocepliliamurguia@gmail.com'
+        ];
     }
 
     match /solicitudes/{id} {

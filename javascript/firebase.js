@@ -40,7 +40,10 @@ const firebaseConfig = {
 };
 
 /** Correos admin (panel + asignar rangos). Debe coincidir con reglas Firestore. */
-export const ADMIN_EMAILS = ["ricardotorresgalvez005@gmail.com"];
+export const ADMIN_EMAILS = [
+  "ricardotorresgalvez005@gmail.com",
+  "yocepliliamurguia@gmail.com",
+];
 
 /** Rangos del equipo: muestran logo verificado */
 export const TEAM_RANGOS = ["creador", "co-creador", "colaborador"];
